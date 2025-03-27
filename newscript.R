@@ -22,7 +22,7 @@ txi <- tximport(files, type="salmon", tx2gene=tx2gene)
 
 # Optional: view matrix of expression
 head(txi$abundance)
-```
+
 
 # Get top 50 most expressed transcripts
 top_tx <- head(order(rowSums(txi$abundance), decreasing=TRUE), 50)
