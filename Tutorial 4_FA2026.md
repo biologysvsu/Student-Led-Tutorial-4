@@ -93,8 +93,7 @@ fastq-dump --gzip SRR11412228
    module load FastQC
    mkdir -p fastqc_data_out
    fastqc -t 4 *.fastq -o fastqc_data_out
-2. Prep and run multiqc
-   Load the environment 
+2. Prep and run multiqc 
    ```bash
    module load anaconda3
    conda create -n multiqc_env -c conda-forge -c bioconda --strict-channel-priority multiqc
@@ -111,7 +110,7 @@ fastq-dump --gzip SRR11412228
    git add multiqc_raw_data.html
    git commit -m "raw read multiqc data"
    git push
-```
+   ```
 ### Subsample fastq files using 'seqtk'
 This is simply to speed up the process by using a portion of the data
 ```
