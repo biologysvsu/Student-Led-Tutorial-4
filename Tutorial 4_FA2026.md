@@ -162,13 +162,22 @@ Trinity --seqType fq --max_memory 128G \
    ```bash
    mkdir ~/trinity_stats_tool && cd ~/trinity_stats_tool
    git clone https://github.com/trinityrnaseq/trinityrnaseq.git
+   ```
+   For the next step, go one of two routes.
+   ```bash
    cd /ocean/projects/bio260081p/shared/Student-Led-Tutorial-4/tutorial4
    perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl mock_trinity_out.Trinity.fasta > mock_trinity_stats.txt
-3. Assess transcript length distribution for covid data:
+   ```
+   Or instead do it in your file, replacing "your-user"
+   ```bash
+   cd /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4/tutorial4
+   perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl mock_trinity_out.Trinity.fasta > mock_trinity_stats.txt
+   ```
+4. Assess transcript length distribution for covid data:
    ```bash
    perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl covid_trinity_out.Trinity.fasta > covid_trinity_stats.txt
    ```
-4. Check covid_trinity_stats.txt
+5. Check covid_trinity_stats.txt
    ```bash
    cat covid_trinity_stats.txt
    ```
