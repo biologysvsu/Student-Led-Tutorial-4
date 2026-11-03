@@ -141,7 +141,7 @@ Trinity --seqType fq --max_memory 128G \
         --single mock_combined.fastq \
         --CPU 128 --output mock_trinity_out
 ```
-Next, replace mock_combined.fastq with covid_combined.fastq
+Next, do the same for covid_combined.fastq
 ```bash
 Trinity --seqType fq --max_memory 128G \
         --single covid_combined.fastq \
