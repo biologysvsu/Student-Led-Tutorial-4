@@ -120,10 +120,10 @@ fastq-dump --gzip SRR11412228
 ### Subsample fastq files using 'seqtk'
 This is simply to speed up the process by using a portion of the data
 ```
-seqtk sample -s100 SRR11412215.fastq 0.1 > subsampled_SRR11412215.fastq
-seqtk sample -s100 SRR11412216.fastq 0.1 > subsampled_SRR11412216.fastq
-seqtk sample -s100 SRR11412227.fastq 0.1 > subsampled_SRR11412227.fastq
-seqtk sample -s100 SRR11412228.fastq 0.1 > subsampled_SRR11412228.fastq
+seqtk sample -s100 SRR11412215.fastq 0.05 > subsampled_SRR11412215.fastq
+seqtk sample -s100 SRR11412216.fastq 0.05 > subsampled_SRR11412216.fastq
+seqtk sample -s100 SRR11412227.fastq 0.05 > subsampled_SRR11412227.fastq
+seqtk sample -s100 SRR11412228.fastq 0.05 > subsampled_SRR11412228.fastq
 ```
 ### Combine FASTQ files for mock-infected and COVID-19-infected groups:
    ```bash
