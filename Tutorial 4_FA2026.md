@@ -52,6 +52,10 @@ or
 ``` bash
 cd /ocean/projects/bio260081p/your-username
 ```
+### Fork on github and clone the repository
+```bash
+git clone
+```
 ### Make a directory for the tutorial 
 ``` bash
 mkdir tutorial4
