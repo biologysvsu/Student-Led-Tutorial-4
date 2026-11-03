@@ -53,9 +53,11 @@ or
 cd /ocean/projects/bio260081p/your-username
 ```
 ### Fork on github and clone the repository
+Go to github and fork the repository. 
 ```bash
 git clone
 ```
+Add the url of your forked repository onto the end of the above command, so it reads like: git clone https://github.com/your-user/Student-Led-Tutorial-4.git
 ### Make a directory for the tutorial 
 ``` bash
 mkdir tutorial4
