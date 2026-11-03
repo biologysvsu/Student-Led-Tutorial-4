@@ -130,7 +130,7 @@ seqtk sample -s100 SRR11412228.fastq 0.1 > subsampled_SRR11412228.fastq
    ```
 #### Part 2: Run Trinity (memory demanding!)
 1. Run Trinity for de novo transcriptome assembly:
-```
+```bash
 salloc --mem=128G --cpus-per-task=128 --time=06:00:00
 
 module load Trinity/2.15.1
@@ -139,9 +139,8 @@ Trinity --seqType fq --max_memory 128G \
         --single mock_combined.fastq \
         --CPU 128 --output mock_trinity_out
 ```
-
-    Replace mock_combined.fastq with covid_combined.fastq
-```
+Next, replace mock_combined.fastq with covid_combined.fastq
+```bash
 Trinity --seqType fq --max_memory 128G \
         --single covid_combined.fastq \
         --CPU 128 --output covid_trinity_out
