@@ -164,12 +164,12 @@ Trinity --seqType fq --max_memory 128G \
    perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl mock_trinity_out.Trinity.fasta > mock_trinity_stats.txt
 3. Assess transcript length distribution for covid data:
    ```bash
-     perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl covid_trinity_out.Trinity.fasta > covid_trinity_stats.txt
-```
+   perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl covid_trinity_out.Trinity.fasta > covid_trinity_stats.txt
+   ```
 4. Check covid_trinity_stats.txt
-```bash
-cat covid_trinity_stats.txt
-```
+   ```bash
+   cat covid_trinity_stats.txt
+   ```
 #### **Part 4: Downstream Analysis**
 - Use Salmon for quantification:
 1. Create a conda environment to install salmon and activate the environment
