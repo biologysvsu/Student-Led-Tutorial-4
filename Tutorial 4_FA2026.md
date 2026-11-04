@@ -52,15 +52,11 @@ or
 ``` bash
 cd /ocean/projects/bio260081p/your-username
 ```
-### Clone the repository 
-In github, fork the Student-Led-Tutorial-4 repository
-``` bash
-git clone
-```
-- Tack the url of your forked repository onto the end of the git clone command, so it looks similar to: git clone https://github.com/your-user/Student-Led-Tutorial-4.git
-### Go into the new repository 
+### Make a repository for this tutorial 
 ```bash
-cd Student-Led-Tutorial-4
+mkdir tutorial4
+
+cd tutorial4
 ```
 ### Download Instructions
 Use the SRA Toolkit (must be installed beforehand if run locally, otherwise available in most HPCs) to download paired-end FASTQ files:
@@ -174,7 +170,7 @@ Trinity --seqType fq --max_memory 128G \
    ```
    For the next step, go your file, replacing "your-user"
    ```bash
-   cd /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4 
+   cd /ocean/projects/bio260081p/your-user/tutorial4
    perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl mock_trinity_out.Trinity.fasta > mock_trinity_stats.txt
    ```
 4. Assess transcript length distribution for covid data:
@@ -218,9 +214,9 @@ salmon index -t mock_trinity_out.Trinity.fasta -i mock_trinity_index
 
 #### **Part 5: Data Visualization in R**
 #### TRANSCRIPT LENGTH COMPARISON
-1. Make sure you are in your Student-Led-Tutorial-4 folder
+1. Make sure you are in your tutorial folder
    ```bash
-   cd /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4
+   cd /ocean/projects/bio260081p/your-user/tutorial4
    ```
 2. Activate the R environment and then open R
    ```bash
@@ -229,7 +225,7 @@ salmon index -t mock_trinity_out.Trinity.fasta -i mock_trinity_index
    ```bash
    R
    ```
-   Your prompt should change from the [bridges2@-loginStudent-Led-Tutorial-4]$ to >
+   Your prompt should change from the [bridges2@-logintutorial4]$ to >
    If this prompt change does not happen, please pause and ask for help!
 3. Plot transcript length distribution (R example):
 ```bash
@@ -321,7 +317,7 @@ ggsave("transcript_length_distribution.png",
 ```
 7. Access the plot through the OnDemand website
 - Log into your OnDemand through https://ondemand.bridges2.psc.edu/
-- Navigate to /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4
+- Navigate to /ocean/projects/bio260081p/your-user/tutorial4
 - Find transcript_length_distribution.png and download it
 - Open the file to view the plot
 #### COMPARE TRANSCRIPT EXPRESSION
