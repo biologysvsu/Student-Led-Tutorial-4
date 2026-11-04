@@ -160,14 +160,9 @@ Trinity --seqType fq --max_memory 128G \
    mkdir ~/trinity_stats_tool && cd ~/trinity_stats_tool
    git clone https://github.com/trinityrnaseq/trinityrnaseq.git
    ```
-   For the next step, go one of two routes.
+   For the next step, go your file, replacing "your-user"
    ```bash
-   cd /ocean/projects/bio260081p/shared/Student-Led-Tutorial-4/tutorial4
-   perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl mock_trinity_out.Trinity.fasta > mock_trinity_stats.txt
-   ```
-   Or instead do it in your file, replacing "your-user"
-   ```bash
-   cd /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4/tutorial4
+   cd /ocean/projects/bio260081p/your-user/tutorial4
    perl -I ~/trinity_stats_tool/trinityrnaseq/PerlLib ~/trinity_stats_tool/trinityrnaseq/util/TrinityStats.pl mock_trinity_out.Trinity.fasta > mock_trinity_stats.txt
    ```
 4. Assess transcript length distribution for covid data:
@@ -213,7 +208,7 @@ salmon index -t mock_trinity_out.Trinity.fasta -i mock_trinity_index
 #### TRANSCRIPT LENGTH COMPARISON
 1. Make sure you are in the tutorial4 folder
    ```bash
-   cd /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4/tutorial4
+   cd /ocean/projects/bio260081p/your-user/tutorial4
    ```
 2. Activate the R environment and then open R
    ```bash
