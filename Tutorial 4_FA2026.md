@@ -299,7 +299,12 @@ awk -F '_' '{OFS=","; print $0, $1"_"$2"_"$3"_"$4}' > tx2gene.csv
 ```
 - Type ls and ensure that tx2gene.csv has been created successfully
 2. Create a heatmap R
+- Go back into R
+```bash
+R
 ```
+- Prompt should change back to >
+```bash
 # Load and install needed libraries
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
