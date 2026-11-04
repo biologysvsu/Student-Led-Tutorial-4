@@ -117,25 +117,27 @@ fastq-dump --gzip SRR11412228
    cat subsampled_SRR11412227.fastq subsampled_SRR11412228.fastq > covid_combined.fastq
    ```
 #### Part 2: Run Trinity (memory demanding!)
-1. Run Trinity for de novo transcriptome assembly:
+1. Allocate resources for this task
 ```bash
 salloc --mem=128G --cpus-per-task=128 --time=06:00:00
 ```
+2. Load Trinity
 ```bash
 module load Trinity/2.15.1
 ```
+3. Run Trinity for de novo transcriptome assembly for mock_combined.fastq
 ```bash
 Trinity --seqType fq --max_memory 128G \
         --single mock_combined.fastq \
         --CPU 128 --output mock_trinity_out
 ```
-Next, do the same for covid_combined.fastq
+4. Next, do the same for covid_combined.fastq
 ```bash
 Trinity --seqType fq --max_memory 128G \
         --single covid_combined.fastq \
         --CPU 128 --output covid_trinity_out
 ```
-2. Output:
+5. The output is:
 - Trinity.fasta: Contains assembled transcripts.
 - Logs and intermediate files for troubleshooting.
 
@@ -143,11 +145,15 @@ Trinity --seqType fq --max_memory 128G \
 1. Count the number of transcripts:
    ```bash
    grep -c ">" mock_trinity_out.Trinity.fasta
+   ```
+   ```bash
    grep -c ">" covid_trinity_out.Trinity.fasta
-
+   ```
 2. Assess transcript length distribution for mock data:
    ```bash
    mkdir ~/trinity_stats_tool && cd ~/trinity_stats_tool
+   ```
+   ```bash
    git clone https://github.com/trinityrnaseq/trinityrnaseq.git
    ```
    For the next step, go your file, replacing "your-user"
