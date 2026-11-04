@@ -89,38 +89,14 @@ fastq-dump --gzip SRR11412228
    gunzip SRR11412227.fastq.gz
    gunzip SRR11412228.fastq.gz
 
-1. Verify the quality of RNA-seq reads using FastQC (optional but recommended):
-   ```bash
-   module load FastQC
-   
-   mkdir -p fastqc_data_out
-   
-   fastqc -t 4 *.fastq -o fastqc_data_out
-   ```
-2. Prep multiqc 
-   ```bash
-   module load anaconda3
-   
-   conda create -n multiqc_env -c conda-forge -c bioconda --strict-channel-priority multiqc
-   
-   module load anaconda3
-   
-   source "$(conda info --base)/etc/profile.d/conda.sh"
-   ```
-3. Run multiqc
-   ```bash
-   conda activate multiqc_env
-   
-   multiqc --dirs fastqc_data_out --filename multiqc_raw_data.html
-   ```
-### Subsample fastq files using 'seqtk'
+2. Subsample fastq files using 'seqtk'
 This is simply to speed up the process by using a portion of the data
-```
-seqtk sample -s100 SRR11412215.fastq 0.05 > subsampled_SRR11412215.fastq
-seqtk sample -s100 SRR11412216.fastq 0.05 > subsampled_SRR11412216.fastq
-seqtk sample -s100 SRR11412227.fastq 0.05 > subsampled_SRR11412227.fastq
-seqtk sample -s100 SRR11412228.fastq 0.05 > subsampled_SRR11412228.fastq
-```
+   ```bash
+   seqtk sample -s100 SRR11412215.fastq 0.05 > subsampled_SRR11412215.fastq
+   seqtk sample -s100 SRR11412216.fastq 0.05 > subsampled_SRR11412216.fastq
+   seqtk sample -s100 SRR11412227.fastq 0.05 > subsampled_SRR11412227.fastq
+   seqtk sample -s100 SRR11412228.fastq 0.05 > subsampled_SRR11412228.fastq
+   ```
 ### Combine FASTQ files for mock-infected and COVID-19-infected groups:
    ```bash
    cat subsampled_SRR11412215.fastq subsampled_SRR11412216.fastq > mock_combined.fastq
