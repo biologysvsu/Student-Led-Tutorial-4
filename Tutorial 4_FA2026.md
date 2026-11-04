@@ -113,16 +113,6 @@ fastq-dump --gzip SRR11412228
    
    multiqc --dirs fastqc_data_out --filename multiqc_raw_data.html
    ```
-4. Visualize the multiqc results in QIIME2
-   ```bash
-   git add multiqc_raw_data.html
-   
-   git commit -m "Add raw-read MultiQC report"
-   
-   git push
-   ```
-   Go to https://view.qiime2.org/ and drop multiqc_raw_data.html
-   Result should be a [[[[[[
 ### Subsample fastq files using 'seqtk'
 This is simply to speed up the process by using a portion of the data
 ```
