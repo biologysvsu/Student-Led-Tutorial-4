@@ -65,7 +65,7 @@ Use the SRA Toolkit (must be installed beforehand if run locally, otherwise avai
    ``` bash
 module load sra-toolkit
    ```
-Handles large files efficiently (downloads in chunks to avoid corruption)
+The prefetch handles large files efficiently (downloads in chunks to avoid corruption)
 ```bash
 # Example for a mock-infected sample. More replicates are always better, so repeat step for each SRA    accession.
 prefetch --max-size 100G SRR11412215  
