@@ -283,11 +283,13 @@ ggplot(all_lengths, aes(x=Length, color=Condition, fill=Condition)) +
 ggsave("transcript_length_distribution.png",
        width = 8, height = 6, dpi = 300)
 ```
-7. Access the plot through the OnDemand website
-- Log into your OnDemand through https://ondemand.bridges2.psc.edu/
-- Navigate to /ocean/projects/bio260081p/your-user/tutorial4
-- Find transcript_length_distribution.png and download it
-- Open the file to view the plot
+7. Quit R
+```bash
+q()
+```
+- If prompted to save workspace image, type n
+- We have already saved the png
+
 #### COMPARE TRANSCRIPT EXPRESSION
 1. Prepare transcript-to-gene map in the HPC
 ```
@@ -295,43 +297,67 @@ grep ">" mock_trinity_out.Trinity.fasta | sed 's/>//' | \
 awk -F ' ' '{print $1}' | \
 awk -F '_' '{OFS=","; print $0, $1"_"$2"_"$3"_"$4}' > tx2gene.csv
 ```
+- Type ls and ensure that tx2gene.csv has been created successfully
 2. Create a heatmap R
 ```
-#Install and load libraries
+# Load and install needed libraries
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 
-BiocManager::install("tximport")
+if (!require("tximport", quietly = TRUE))
+  BiocManager::install("tximport")
 library(tximport)
 
-if (!requireNamespace("pheatmap", quietly = TRUE)) {
+if (!require("pheatmap", quietly = TRUE)) {
   install.packages("pheatmap")
 }
 library(pheatmap)
 
-# Point to Salmon quant files
-files <- c("mock" = "quant_mock.sf",
-           "covid" = "quant_covid.sf")
+# Point to Salmon quantification files corrected
+files <- c("mock" = "salmon_mock_out/quant.sf",
+           "covid" = "salmon_covid_out/quant.sf")
 
 # Load tx2gene
 tx2gene <- read.csv("tx2gene.csv", header=FALSE, col.names=c("TXNAME", "GENEID"))
 
-# Import data
-txi <- tximport(files, type="salmon", tx2gene=tx2gene)
+# Import data drop except InfReps = TRUE to bypass jsonlite requirement
+txi <- tximport(files, type="salmon", tx2gene=tx2gene, dropInfReps = TRUE)
 
-# Optional: view matrix of expression
-head(txi$abundance)
-
-# Get top 50 most expressed transcripts
+# Extract top 50 most expressed transcripts
 top_tx <- head(order(rowSums(txi$abundance), decreasing=TRUE), 50)
 top_data <- log2(txi$abundance[top_tx, ] + 1)
 
-##Create heatmaps for quantified transcripts (e.g., top 50):
+# Make and save the heatmap to a PNG file
 pheatmap(top_data,
-         cluster_rows=TRUE,
-         cluster_cols=FALSE,
-         scale="row",
-         fontsize=8,
-         main="Top 50 Expressed Transcripts",
-         color=colorRampPalette(c("navy", "white", "firebrick3"))(50))
+         cluster_rows = TRUE,
+         cluster_cols = FALSE,
+         scale = "row",
+         fontsize = 8,
+         main = "Top 50 Expressed Transcripts",
+         color = colorRampPalette(c("navy", "white", "firebrick3"))(50),
+         filename = "expression_heatmap.png",
+         width = 8,
+         height = 6)
 ```
+3. Make sure the files exist before quitting R
+```bash
+file.exists(c(
+  "transcript_length_summary.png",
+  "transcript_length_distribution.png",
+  "expression_heatmap.png"
+))
+```
+- Should show TRUE for all three
+4. Quit R
+```bash
+q()
+```
+- If prompted to save workspace image, type y
+### Access the plot through the OnDemand website
+1. Log into your OnDemand through https://ondemand.bridges2.psc.edu/
+2. Navigate to /ocean/projects/bio260081p/your-user/tutorial4
+3. Find the files:
+      transcript_length_distribution.png
+      transcript_length_summary.png
+      expression_heatmap.png
+5. Download the files and open them to view
