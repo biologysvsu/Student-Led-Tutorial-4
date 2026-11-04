@@ -112,15 +112,19 @@ fastq-dump --gzip SRR11412228
 ### Combine FASTQ files for mock-infected and COVID-19-infected groups:
    ```bash
    cat subsampled_SRR11412215.fastq subsampled_SRR11412216.fastq > mock_combined.fastq
+   ```
+   ```bash
    cat subsampled_SRR11412227.fastq subsampled_SRR11412228.fastq > covid_combined.fastq
    ```
 #### Part 2: Run Trinity (memory demanding!)
 1. Run Trinity for de novo transcriptome assembly:
 ```bash
 salloc --mem=128G --cpus-per-task=128 --time=06:00:00
-
+```
+```bash
 module load Trinity/2.15.1
-
+```
+```bash
 Trinity --seqType fq --max_memory 128G \
         --single mock_combined.fastq \
         --CPU 128 --output mock_trinity_out
