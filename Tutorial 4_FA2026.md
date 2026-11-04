@@ -82,19 +82,31 @@ fastq-dump --gzip SRR11412228
 ```
 ### **Tasks and Deliverables**
 #### **Part 1: Data Preparation**
-1. Unzip the .fastq.qz files
+1. Unzip the .fastq.qz files (one at a time)
    ```bash
    gunzip SRR11412215.fastq.gz
+   ```
+   ```bash
    gunzip SRR11412216.fastq.gz
+   ```
+   ```bash
    gunzip SRR11412227.fastq.gz
+   ```
+   ```bash
    gunzip SRR11412228.fastq.gz
-
-2. Subsample fastq files using 'seqtk'
-This is simply to speed up the process by using a portion of the data
+   ```
+2. Subsample fastq files using 'seqtk' (one at a time)
+- This is simply to speed up the process by using a portion of the data
    ```bash
    seqtk sample -s100 SRR11412215.fastq 0.1 > subsampled_SRR11412215.fastq
+   ```
+   ```bash
    seqtk sample -s100 SRR11412216.fastq 0.1 > subsampled_SRR11412216.fastq
+   ```
+   ```bash
    seqtk sample -s100 SRR11412227.fastq 0.1 > subsampled_SRR11412227.fastq
+   ```
+   ```bash
    seqtk sample -s100 SRR11412228.fastq 0.1 > subsampled_SRR11412228.fastq
    ```
 ### Combine FASTQ files for mock-infected and COVID-19-infected groups:
@@ -362,7 +374,7 @@ q()
 1. Log into your OnDemand through https://ondemand.bridges2.psc.edu/
 2. Navigate to /ocean/projects/bio260081p/your-user/tutorial4
 3. Find the files:
-      transcript_length_distribution.png
-      transcript_length_summary.png
-      expression_heatmap.png
+      - transcript_length_distribution.png
+      - transcript_length_summary.png
+      - expression_heatmap.png
 5. Download the files and open them to view
