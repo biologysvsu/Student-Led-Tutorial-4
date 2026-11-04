@@ -52,12 +52,6 @@ or
 ``` bash
 cd /ocean/projects/bio260081p/your-username
 ```
-### Fork on github and clone the repository
-Go to github and fork the repository. 
-```bash
-git clone
-```
-Add the url of your forked repository onto the end of the above command, so it reads like: git clone https://github.com/your-user/Student-Led-Tutorial-4.git
 ### Make a directory for the tutorial 
 ``` bash
 mkdir tutorial4
@@ -70,9 +64,11 @@ Use the SRA Toolkit (must be installed beforehand if run locally, otherwise avai
 
    ``` bash
 module load sra-toolkit
-
+   ```
+Handles large files efficiently (downloads in chunks to avoid corruption)
+```bash
 # Example for a mock-infected sample. More replicates are always better, so repeat step for each SRA    accession.
-prefetch --max-size 100G SRR11412215 #Handles large files efficiently (downloads in chunks to avoid corruption) 
+prefetch --max-size 100G SRR11412215  
 fastq-dump --gzip SRR11412215
 
 prefetch --max-size 100G SRR11412216
@@ -97,8 +93,11 @@ fastq-dump --gzip SRR11412228
 1. Verify the quality of RNA-seq reads using FastQC (optional but recommended):
    ```bash
    module load FastQC
+   
    mkdir -p fastqc_data_out
+   
    fastqc -t 4 *.fastq -o fastqc_data_out
+   ```
 2. Prep multiqc 
    ```bash
    module load anaconda3
@@ -114,12 +113,6 @@ fastq-dump --gzip SRR11412228
    conda activate multiqc_env
    
    multiqc --dirs fastqc_data_out --filename multiqc_raw_data.html
-   ```
-4. Visualize multiqc file with QIIME 2.
-   ```bash
-   git add multiqc_raw_data.html
-   git commit -m "raw read multiqc data"
-   git push
    ```
 ### Subsample fastq files using 'seqtk'
 This is simply to speed up the process by using a portion of the data
