@@ -57,7 +57,11 @@ In github, fork the Student-Led-Tutorial-4 repository
 ``` bash
 git clone
 ```
-   Tack the url of your forked repository onto the end of the git clone command, so it looks similar to: git clone https://github.com/your-user/Student-Led-Tutorial-4.git
+- Tack the url of your forked repository onto the end of the git clone command, so it looks similar to: git clone https://github.com/your-user/Student-Led-Tutorial-4.git
+### Go into the new repository 
+```bash
+cd Student-Led-Tutorial-4
+```
 ### Download Instructions
 Use the SRA Toolkit (must be installed beforehand if run locally, otherwise available in most HPCs) to download paired-end FASTQ files:
 
