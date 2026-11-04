@@ -99,16 +99,20 @@ fastq-dump --gzip SRR11412228
    module load FastQC
    mkdir -p fastqc_data_out
    fastqc -t 4 *.fastq -o fastqc_data_out
-2. Prep and run multiqc 
+2. Prep multiqc 
    ```bash
    module load anaconda3
+   
    conda create -n multiqc_env -c conda-forge -c bioconda --strict-channel-priority multiqc
+   
    module load anaconda3
+   
    source "$(conda info --base)/etc/profile.d/conda.sh"
    ```
-   Run multiqc
+3. Run multiqc
    ```bash
    conda activate multiqc_env
+   
    multiqc --dirs fastqc_data_out --filename multiqc_raw_data.html
    ```
 4. Visualize multiqc file with QIIME 2.
@@ -182,7 +186,7 @@ Trinity --seqType fq --max_memory 128G \
    cat covid_trinity_stats.txt
    ```
 #### **Part 4: Downstream Analysis**
-- Use Salmon for quantification:
+Use Salmon for quantification:
 1. Create a conda environment to install salmon and activate the environment
 ```
 module load anaconda3
@@ -193,11 +197,11 @@ conda create -n salmon_env -c bioconda -c conda-forge salmon
 ```
 conda activate salmon_env
 ```
-3. Create salmon index (one index for both)
+2. Create salmon index (one index for both)
 ```
 salmon index -t mock_trinity_out.Trinity.fasta -i mock_trinity_index
 ```
-3. Quantify Transcript Abundance.
+3. Quantify transcript abundance
 - For mock:
 ```bash
    salmon quant -i mock_trinity_index -l A \
@@ -210,13 +214,25 @@ salmon index -t mock_trinity_out.Trinity.fasta -i mock_trinity_index
        -r covid_combined.fastq \
        -o salmon_covid_out
 ```
-- Output:
-- Quantification files indicating transcript abundance.
+- Output: quantification files indicating transcript abundance.
 
 #### **Part 5: Data Visualization in R**
 #### TRANSCRIPT LENGTH COMPARISON
-1. Plot transcript length distribution (R example):
-```
+1. Make sure you are in the tutorial4 folder
+   ```bash
+   cd /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4/tutorial4
+   ```
+2. Activate the R environment and then open R
+   ```bash
+   conda activate rnaseq
+   ```
+   ```bash
+   R
+   ```
+   Your prompt should change from the [bridges2@-logintutorial4]$ to >
+   If this prompt change does not happen, please pause and ask for help
+3. Plot transcript length distribution (R example):
+```bash
 #Install and load libraries
 if (!requireNamespace("ggplot2", quietly = TRUE)) {
   install.packages("ggplot2")
@@ -252,10 +268,14 @@ ggplot(length_stats, aes(x = Metric, y = Value, fill = Condition)) +
   theme_minimal() +
   labs(title = "Transcript Length Comparison (Summary)",
        y = "Length (bp)")
-
 ```
-#### TRANSCRIPT LENGHT COMPARISON
+4. Save this graph:
+```bash
+ggsave("transcript_length_summary.png",
+       width = 8, height = 6, dpi = 300)
 ```
+5. Plot transcript length distribution (second section):
+```bash
 #Install and load libraries
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
   install.packages("BiocManager")
@@ -294,6 +314,16 @@ ggplot(all_lengths, aes(x=Length, color=Condition, fill=Condition)) +
        x="Transcript Length (bp)",
        y="Density")
 ```
+6. Save this plot (again!)
+```bash
+ggsave("transcript_length_distribution.png",
+       width = 8, height = 6, dpi = 300)
+```
+7. Access the plot through the OnDemand website
+- Log into your OnDemand through https://ondemand.bridges2.psc.edu/
+- Navigate to /ocean/projects/bio260081p/your-user/Student-Led-Tutorial-4/tutorial4/
+- Find transcript_length_distribution.png and download it
+- Open the file to view the plot
 #### COMPARE TRANSCRIPT EXPRESSION
 1. Prepare transcript-to-gene map in the HPC
 ```
